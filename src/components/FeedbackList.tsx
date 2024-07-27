@@ -1,26 +1,49 @@
-import { TriangleUpIcon } from "@radix-ui/react-icons";
+import { useEffect, useState } from "react";
+import FeedbackItem from "./FeedbackItem";
+import Spinner from "./Spinnet";
+import ErrorMessage from "./ErrorMessage";
 function FeedbackList() {
+  const [feedbacks, setFeedbacks] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    async function fetchFeedbacks() {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          "https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks"
+        );
+
+        if (!response.ok) {
+          setIsLoading(false);
+          throw new Error();
+        }
+        const data = await response.json();
+        setFeedbacks(data?.feedbacks);
+      } catch (error) {
+        setIsLoading(false);
+        setErrorMessage("something went wrong");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchFeedbacks();
+  }, []);
+
   return (
     <ol className="feedback-list">
-      <li className="feedback">
-        <button>
-          <TriangleUpIcon />
-          <span>670</span>
-        </button>
-
-        <div className="">
-          <p>B</p>
-        </div>
-        <div className="">
-          <p>ByteGrad</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem quo
-            inventore obcaecati, iure eaque alias eligendi tempora blanditiis
-            sunt aperiam atque, itaque architecto aspernatur reiciend
-          </p>
-        </div>
-        <p>4 days ago</p>
-      </li>
+      {isLoading && <Spinner />}
+      {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
+      {feedbacks?.map((feedback) => (
+        <FeedbackItem
+          key={feedback.id}
+          company={feedback.company}
+          daysAgo={feedback.daysAgo}
+          upvoteCount={feedback.upvoteCount}
+          text={feedback.text}
+        />
+      ))}
     </ol>
   );
 }
