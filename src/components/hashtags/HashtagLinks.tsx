@@ -1,6 +1,12 @@
+import { useContext } from "react";
 import HashtagItem from "./HashtagItem";
+import { ItemsContext } from "../../contexts/FeedbackItemsContextWrapper";
 
-function HashtagLinks({ feedbacks, setFilterBy }) {
+function HashtagLinks() {
+  const context = useContext(ItemsContext);
+  if (!context)
+    throw new Error(" ItemsContext is required for hashtag links to work");
+  const { feedbacks } = context;
   return (
     <ul className="hashtags">
       {feedbacks
@@ -10,11 +16,7 @@ function HashtagLinks({ feedbacks, setFilterBy }) {
           );
         })
         .map((feed) => (
-          <HashtagItem
-            key={feed.company}
-            company={feed.company}
-            setFilterBy={setFilterBy}
-          />
+          <HashtagItem key={feed.company} company={feed.company} />
         ))}
     </ul>
   );

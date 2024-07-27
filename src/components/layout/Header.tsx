@@ -3,13 +3,13 @@ import Logo from "../Logo";
 import PageHeading from "../PageHeading";
 import Pattern from "../Pattern";
 
-function Header({ handleAddFeedback }) {
+function Header() {
   return (
     <header>
       <Pattern />
       <Logo />
       <PageHeading />
-      <FeedbackForm handleAddFeedback={handleAddFeedback} />
+      <FeedbackForm />
     </header>
   );
 }
