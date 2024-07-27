@@ -18,6 +18,7 @@ function FeedbackForm() {
         placeholder="blabla"
         spellCheck={false}
         onChange={handleChange}
+        maxLength={MAX_CHARACHERS}
       />
 
       <label htmlFor="feedback-textarea">
@@ -25,19 +26,7 @@ function FeedbackForm() {
       </label>
 
       <div>
-        <p className="u-italic">
-          {charLimitExceeded ? (
-            <p className="error-text">
-              Charachter Limit Excedeed (
-              {charCount === 0
-                ? "Exactly 150"
-                : `${Math.abs(charCount)} passed`}
-              )
-            </p>
-          ) : (
-            charCount
-          )}
-        </p>
+        <p className="u-italic">{charCount}</p>
         <button disabled={charLimitExceeded}>
           <span>Submit</span>
         </button>
