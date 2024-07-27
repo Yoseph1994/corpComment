@@ -1,13 +1,11 @@
 import FeedbackItem from "./FeedbackItem";
 import Spinner from "../Spinnet";
 import ErrorMessage from "../ErrorMessage";
-import { useContext } from "react";
-import { ItemsContext } from "../../contexts/FeedbackItemsContextWrapper";
+import { useFeedbackContext } from "../../lib/hooks";
 
 function FeedbackList() {
-  const context = useContext(ItemsContext);
-  if (!context) throw new Error("No context wrapper");
-  const { filteredFeedbacks, isLoading, errorMessage } = context;
+  const context = useFeedbackContext();
+  const { isLoading, errorMessage, filteredFeedbacks } = context;
   return (
     <ol className="feedback-list">
       {isLoading && <Spinner />}

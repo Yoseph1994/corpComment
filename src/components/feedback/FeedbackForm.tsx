@@ -1,10 +1,9 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { MAX_CHARACHERS } from "../../lib/constants";
-import { ItemsContext } from "../../contexts/FeedbackItemsContextWrapper";
+import { useFeedbackContext } from "../../lib/hooks";
 
 function FeedbackForm() {
-  const context = useContext(ItemsContext);
-  if (!context) throw new Error("No context provided for FeedbackForm");
+  const context = useFeedbackContext();
   const { handleAddFeedback } = context;
   const [comment, setComment] = useState("");
   const charCount = MAX_CHARACHERS - comment.length;

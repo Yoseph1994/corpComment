@@ -1,11 +1,8 @@
-import { useContext } from "react";
+import { useFeedbackContext } from "../../lib/hooks";
 import HashtagItem from "./HashtagItem";
-import { ItemsContext } from "../../contexts/FeedbackItemsContextWrapper";
 
 function HashtagLinks() {
-  const context = useContext(ItemsContext);
-  if (!context)
-    throw new Error(" ItemsContext is required for hashtag links to work");
+  const context = useFeedbackContext();
   const { feedbacks } = context;
   return (
     <ul className="hashtags">
