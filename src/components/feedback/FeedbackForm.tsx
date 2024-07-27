@@ -5,6 +5,7 @@ function FeedbackForm({ handleAddFeedback }) {
   const [comment, setComment] = useState("");
   const charCount = MAX_CHARACHERS - comment.length;
   const charLimitExceeded = charCount <= 0;
+  const [showInValidIndicator, setShowInValidIndicator] = useState(false);
 
   function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
     setComment(event.target.value);
@@ -14,8 +15,9 @@ function FeedbackForm({ handleAddFeedback }) {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) {
     event.preventDefault();
-    if (!comment.includes("#")) {
-      alert("Please enter a comment with #");
+    if (!comment.includes("#") || comment.length < 5) {
+      setShowInValidIndicator(true);
+      setTimeout(() => setShowInValidIndicator(false), 2000);
       return;
     }
     handleAddFeedback(comment);
@@ -23,7 +25,7 @@ function FeedbackForm({ handleAddFeedback }) {
   }
 
   return (
-    <form className="form">
+    <form className={`form ${showInValidIndicator && "form--invalid"}`}>
       <textarea
         id="feedback-textarea"
         value={comment}
