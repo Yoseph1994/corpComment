@@ -1,5 +1,11 @@
-function Container() {
-  return <div>Container</div>;
-}
+import FeedbackList from "./FeedbackList";
+import Header from "./Header";
 
-export default Container;
+export default function Container() {
+  return (
+    <div className="container">
+      <Header />
+      <FeedbackList />
+    </div>
+  );
+}
