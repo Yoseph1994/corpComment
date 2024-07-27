@@ -4,7 +4,7 @@ import SideLinks from "./SideLinks";
 
 function App() {
   return (
-    <div className="">
+    <div className="app">
       <Footer />
       <Container />
       <SideLinks />
