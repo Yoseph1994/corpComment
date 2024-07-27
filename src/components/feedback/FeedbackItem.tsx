@@ -11,13 +11,12 @@ function FeedbackItem({
 }: FeedbackItemTypes) {
   const [isOpen, setIsOpen] = useState(false);
   const [upVote, setUpVote] = useState(upvoteCount);
-  const [upvoted, setUpvoted] = useState(false);
 
   const handleUpvote = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    setUpvoted(true);
     setUpVote((prev) => prev + 1);
+    event.currentTarget.disabled = true;
     event.stopPropagation();
   };
 
@@ -26,7 +25,7 @@ function FeedbackItem({
       className={`feedback ${isOpen ? "feedback--expand" : ""}`}
       onClick={() => setIsOpen((prev) => !prev)}
     >
-      <button onClick={handleUpvote} disabled={upvoted}>
+      <button onClick={handleUpvote}>
         <TriangleUpIcon />
         <span>{upVote}</span>
       </button>
