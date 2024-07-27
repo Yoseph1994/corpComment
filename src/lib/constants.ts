@@ -19,6 +19,7 @@ export type FeedbackItemTypes = {
   id?: number | string;
   upvoteCount: number;
   company: string;
+  badgeLetter?: string;
   daysAgo: number;
   text?: string;
   children?: React.ReactNode; // any valid React component or text

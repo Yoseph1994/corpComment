@@ -495,7 +495,8 @@ form button span::selection {
 /* HASHTAGS */
 .hashtags {
   position: absolute;
-  right: -137px;
+  right: -150px;
+  margin-top: 10px;
   top: 0px;
 }
 
@@ -515,6 +516,8 @@ form button span::selection {
   border-radius: 500px;
   cursor: pointer;
   transition: all 0.2s;
+  display: block;
+  margin-top: 10px;
 }
 
 .hashtags li button:hover,

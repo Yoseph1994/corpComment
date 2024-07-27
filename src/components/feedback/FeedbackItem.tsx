@@ -1,5 +1,5 @@
 import { TriangleUpIcon } from "@radix-ui/react-icons";
-import { FeedbackItemTypes } from "../lib/constants";
+import { FeedbackItemTypes } from "../../lib/constants";
 
 function FeedbackItem({
   upvoteCount,

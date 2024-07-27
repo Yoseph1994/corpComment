@@ -1,5 +1,5 @@
-import { TFeedbackProps } from "../lib/constants";
-import FeedbackList from "./FeedbackList";
+import { TFeedbackProps } from "../../lib/constants";
+import FeedbackList from "../feedback/FeedbackList";
 import Header from "./Header";
 
 export default function Container({

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MAX_CHARACHERS } from "../lib/constants";
+import { MAX_CHARACHERS } from "../../lib/constants";
 
 function FeedbackForm({ handleAddFeedback }) {
   const [comment, setComment] = useState("");
