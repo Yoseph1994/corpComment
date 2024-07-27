@@ -1,12 +1,5 @@
 import { TriangleUpIcon } from "@radix-ui/react-icons";
-
-type FeedbackItemTypes = {
-  upvoteCount: number;
-  company: string;
-  daysAgo: number;
-  text?: string;
-  children?: React.ReactNode; // any valid React component or text
-};
+import { FeedbackItemTypes } from "../lib/constants";
 
 function FeedbackItem({
   upvoteCount,
@@ -23,7 +16,7 @@ function FeedbackItem({
       </button>
 
       <div className="">
-        <p>{company.substring(0, 1)}</p>
+        <p>{company.substring(0, 1).toUpperCase()}</p>
       </div>
       <div className="">
         <p>{company}</p>

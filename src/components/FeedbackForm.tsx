@@ -1,13 +1,25 @@
 import { useState } from "react";
 import { MAX_CHARACHERS } from "../lib/constants";
 
-function FeedbackForm() {
+function FeedbackForm({ handleAddFeedback }) {
   const [comment, setComment] = useState("");
   const charCount = MAX_CHARACHERS - comment.length;
   const charLimitExceeded = charCount <= 0;
 
   function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
     setComment(event.target.value);
+  }
+
+  function handleSubmit(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    event.preventDefault();
+    if (!comment.includes("#")) {
+      alert("Please enter a comment with #");
+      return;
+    }
+    handleAddFeedback(comment);
+    setComment("");
   }
 
   return (
@@ -27,7 +39,7 @@ function FeedbackForm() {
 
       <div>
         <p className="u-italic">{charCount}</p>
-        <button disabled={charLimitExceeded}>
+        <button disabled={charLimitExceeded} onClick={handleSubmit}>
           <span>Submit</span>
         </button>
       </div>

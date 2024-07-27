@@ -14,3 +14,22 @@ export const feedbackstype = [
     comment: "test test test",
   },
 ];
+
+export type FeedbackItemTypes = {
+  id?: number | string;
+  upvoteCount: number;
+  company: string;
+  daysAgo: number;
+  text?: string;
+  children?: React.ReactNode; // any valid React component or text
+};
+
+export type TFeedbackProps = {
+  feedbacks: FeedbackItemTypes[];
+  isLoading: boolean;
+  errorMessage: string;
+  setIsLoading: boolean;
+  setErrorMessage: string;
+  setFeedbacks: (feedbacks: FeedbackItemTypes[]) => void;
+  handleAddFeedback: (text: string) => void;
+};

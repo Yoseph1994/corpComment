@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import FeedbackItem from "./FeedbackItem";
 import Spinner from "./Spinnet";
 import ErrorMessage from "./ErrorMessage";
-function FeedbackList() {
-  const [feedbacks, setFeedbacks] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+import { TFeedbackProps } from "../lib/constants";
 
+function FeedbackList({
+  isLoading,
+  errorMessage,
+  feedbacks,
+  setFeedbacks,
+  setIsLoading,
+  setErrorMessage,
+}) {
   useEffect(() => {
     async function fetchFeedbacks() {
       try {
