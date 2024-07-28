@@ -1,15 +1,12 @@
-import { useContext } from "react";
-import { ItemsContext } from "../../contexts/FeedbackItemsContextWrapper";
+import { useFeedbackitemStore } from "../../stores/feedbackitemstore";
 
 type HashtagItemProps = {
   company: string;
 };
 
 export default function HashtagItem({ company }: HashtagItemProps) {
-  const context = useContext(ItemsContext);
-  if (!context)
-    throw new Error("Context  is required for HashtagItem properties to work");
-  const { setFilterBy } = context;
+  const setFilterBy = useFeedbackitemStore((state) => state.setFilterBy);
+
   return (
     <li key={company}>
       <button

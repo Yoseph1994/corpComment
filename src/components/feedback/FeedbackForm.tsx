@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { MAX_CHARACHERS } from "../../lib/constants";
-import { useFeedbackContext } from "../../lib/hooks";
+import { useFeedbackitemStore } from "../../stores/feedbackitemstore";
 
 function FeedbackForm() {
-  const context = useFeedbackContext();
-  const { handleAddFeedback } = context;
+  const AddFeedback = useFeedbackitemStore((state) => state.AddFeedback);
   const [comment, setComment] = useState("");
   const charCount = MAX_CHARACHERS - comment.length;
   const charLimitExceeded = charCount <= 0;
@@ -23,7 +22,7 @@ function FeedbackForm() {
       setTimeout(() => setShowInValidIndicator(false), 2000);
       return;
     }
-    handleAddFeedback(comment);
+    AddFeedback(comment);
     setComment("");
   }
 
