@@ -1,7 +1,18 @@
 import { create } from "zustand";
 import { FeedbackItemTypes } from "../lib/constants";
 
-export const useFeedbackitemStore = create((set, get) => ({
+type TFeedbackStore = {
+  feedbacks: FeedbackItemTypes[];
+  isLoading: boolean;
+  errorMessage: string;
+  filterBy: string;
+  setFilterBy: (filterLabel: string) => void;
+  getfilteredFeedbacks: () => FeedbackItemTypes[];
+  AddFeedback: (text: string) => Promise<void>;
+  fetchFeedbacks: () => Promise<void>;
+};
+
+export const useFeedbackitemStore = create<TFeedbackStore>((set, get) => ({
   feedbacks: [],
   isLoading: false,
   errorMessage: "",
